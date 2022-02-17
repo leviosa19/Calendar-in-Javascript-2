@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+    <style>
+
+    </style>
+    </head>
+  <body>
+
+    <button onclick="addMore()">Add</button>
+    <button onclick="remove()">Remove</button>
+
+    <div class="calendarHere" id="calendarHere">
+        <form id="formUser" style="border: 1px solid black;">
+
+        </form>
+    </div>
+
+
+    <script>
+        var i = 0;
+        function addMore() {
+            var html = `<br /><input id="input" type="text" value="` + i + `" onchange='check(value)'/><br />`;
+            document.getElementById('formUser').innerHTML += html; 
+            i++;           
+        }
+
+        function check(val) {
+          console.log(val)
+        }
+
+        function remove() {
+            var element = document.getElementById('formUser')[2];
+            var child = document.getElementById("input"+i);
+            // element[i].removeChild(child);
+            console.log(element)
+            i--;
+        }
+
+    </script>
+
+  </body>
+</html>

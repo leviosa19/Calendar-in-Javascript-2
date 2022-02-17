@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #aa {
+            color: red;
+        }
+    </style>
+    <script src="script4.js"></script>
+  </head>
+  <body>
+
+    <button onclick="a(10, 2)">a()</button>
+    <button onclick="add()">Add</button>
+    <button onclick="getName()">Remove</button>
+    <button onclick="getValue()">Get Value</button>
+    <input type="text" id="in" />
+
+
+    <div id="add">
+        <table id="tableId" border=1></table>
+    </div>
+
+
+    <!-- <table id="tableId" border=1>
+    <tbody>
+    <tr>
+
+    <td>
+        <select id="tmpAccess" onchange="toggleDate()">
+            <option selected value="N">NO</option>
+            <option value="Y">YES</option>
+        </select>
+    </td>
+
+    <td>
+    <input type="text" readonly id="tempExpDate" value="31-12-3000" disabled>
+        <a id="linkCal">
+            <img src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png" id="calendarImg">
+        </a>
+    </td>
+
+    </tr>
+    </tbody>
+    </table> -->
+
+
+
+    <!-- <div>
+        <table id="tableId" border=1>
+            <tbody>
+                <tr><td>Item one</td></tr>
+                <tr><td>Item two</td></tr>
+                <tr><td>Item three</td></tr>
+            </tbody>
+        </table>
+    </div> -->
+
+
+
+
+
+    <script>
+
+        var namee = "Rushi";
+        var i = 0;
+        function add() {
+           var html = `<tr>`;
+
+            html += `<td id='aa' onclick="one(); two();">`;
+            html += i;
+            html += `</td>`;
+
+            html += `<td>`;
+            html += `<select id="tmpAccess` + i + `" onchange="toggleDate(id, ` + i + `)">`;
+            html += `<option selected value="N">NO</option><option value="Y">YES</option>`;
+            html += `</select>`;
+            html += `</td>`;
+
+            html += `<td>`;
+            html += `<input type="text" readonly id="tempExpDate` + i + `" value="31-12-3000" disabled>`;
+            html += `<div id="addImg` + i + `" style=""><img id="calendarImg` + i + `" style="filter: grayscale(100%)" 
+                                src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png"></div>`;
+            // html += `<a id="linkCal` + i + `">`;
+            // html += `<img id="calendarImg` + i + `" style="filter: grayscale(100%)" src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png">`;
+            // html += `</a>`;
+            html += `</td>`;
+
+            html += `<td>`;
+            html += `<input type="button" value="Delete" onclick="remove(this)">`;
+            html += `</td>`;
+
+            html += `</tr>`;
+
+
+            document.getElementById("tableId").innerHTML += html;
+
+            document.getElementById("in").value = i;
+
+            i++;
+            
+
+
+        }
+
+        function getValue() {
+            var inValue = document.getElementById("in").value;
+            console.log(inValue)
+            for (let i = 0 ; i < inValue; i++) {
+                if (document.getElementById("tmpAccess" + i) != null) {
+                    console.log(document.getElementById('tempExpDate' + i).value)
+                }
+            }
+        }
+
+        function remove(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("tableId").deleteRow(i);
+        }
+
+        function toggleDate(id, num) {
+            
+            var tmpAccess = document.getElementById(id).value;
+            var name = 'tmpExpDateeee' + num;
+            console.log(tmpAccess)
+            if (tmpAccess == 'N') {
+                document.getElementById('tempExpDate' + num).disabled = true;
+                document.getElementById('tempExpDate' + num).value = "31-12-3000";
+                document.getElementById('addImg' + num).innerHTML = `<img id="calendarImg` + num + `" style="filter: grayscale(100%)" 
+                            src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png">`
+// document.getElementById('linkCal' + num).removeEventListener("click", x1);
+                // document.getElementById('linkCal' + num).remove();
+// document.getElementById('linkCal' + num).innerHTML = `<img id="calendarImg` + i + `" style="filter: grayscale(100%)" src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png">`
+                // document.getElementById('calendarImg' + num).style.filter = "grayscale(100%)";
+            }
+            else {
+                document.getElementById('tempExpDate' + num).disabled = false;
+                document.getElementById('tempExpDate' + num).value = "20203" + num;
+                document.getElementById('addImg' + num).innerHTML = `<a id="linkCal` + num + `" onclick="console.log(` + num + `)" ><img id="calendarImg` + num + `" 
+                            style="filter: grayscale(0%)" src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png" />`
+// document.getElementById('linkCal' + num).addEventListener("click", function() {x1(num)});
+// document.getElementById("calendarImg" + num).innerHTML = `<a id="linkCal` + num + `" onclick="x1(` + num + `)"><img id="calendarImg` + i + `" style="filter: grayscale(0%)" src="https://findicons.com/files/icons/2166/oxygen/48/document_properties.png"></a>`;
+                // document.getElementById('calendarImg' + num).style.filter = "grayscale(0%)";
+            }
+
+
+        }
+
+
+        // function addRowHandlers() {
+        //         console.log("calling..")
+        //         var table = document.getElementById("tableId");
+        //         var rows = table.getElementsByTagName("tr");
+        //         for (i = 0; i < rows.length; i++) {
+        //         var currentRow = table.rows[i];
+        //         var createClickHandler = function (row) {
+        //             return function () {
+        //             var cell = row.getElementsByTagName("td")[0];
+        //             var id = cell.innerHTML;
+        //             alert("id:" + id);
+        //             };
+        //         };
+
+        //         currentRow.onclick = createClickHandler(currentRow);
+        //         }
+        // }
+        
+        //   window.onload = addRowHandlers();
+        // window.onload = function () {
+        //     document.getElementById("tableId").addEventListener("change", toggleDate)
+        // }
+ 
+    </SCRIPT>
+  </body>
+</html>

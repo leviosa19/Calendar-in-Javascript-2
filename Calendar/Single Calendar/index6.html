@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="demo1"></p>
+
+    <script>
+        function join(t, a, s) {
+            function format(m) {
+                let f = new Intl.DateTimeFormat('en', m);
+                console.log("m:" + m.day)
+                return f.format(t);
+            }
+            if (a.map(format)[0] < 10) { 
+                a.map(format)[0] = "0" + a.map(format)[0];
+                console.log(a.map(format)[0]);
+            }
+            return a.map(format).join(s);
+        }
+
+        let a = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
+        let s = join(new Date(), a, '');
+        document.getElementById("demo1").innerHTML = s;
+
+
+
+        function getResult() {
+  function padTo2Digits(num) {
+    return num.toString().padStart
+  }
+
+  function formatDate(date) {
+  	var monthArr = new Array();
+    monthArr[0] = "January";
+    monthArr[1] = "February";
+    monthArr[2] = "March";
+    monthArr[3] = "April";
+    monthArr[4] = "May";
+    monthArr[5] = "June";
+    monthArr[6] = "July";
+    monthArr[7] = "August";
+    monthArr[8] = "September";
+    monthArr[9] = "October";
+    monthArr[10] = "November";
+    monthArr[11] = "December";
+    
+    return [
+      padTo2Digits(date.getDate()),
+      monthArr[date.getMonth()].slice(0, 3),
+      date.getFullYear(),
+    ].join("");
+  }
+
+  // 👇️ 24/10/2021 (mm/dd/yyyy)
+  document.getElementById("demo").innerHTML = formatDate(new Date());
+}
+    </script>
+</body>
+</html>

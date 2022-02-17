@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+    	.container {
+        	width: 100%;
+            height: 100vh;
+            border: 1px solid lightgray;
+            margin: 5px;
+            padding: 20px;
+        }
+        .data {
+        	width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="container">
+	<button onclick="addMore()">Add More</button>
+    
+    <div class="data" id="data"> 
+    
+    <div>
+</div>
+
+
+
+
+
+<!--
+<select id="selectId" onchange="toggleDate()">
+	<option value='N'>Enable</option>
+	<option value='Y'>Disable</option>
+</select>
+
+<a href="#" id="anchor">
+	<img src="https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png" width="30px" height="30px">
+</a>
+-->
+
+
+
+
+
+<script>
+var i = 0;
+function addMore() {
+	var html = `<div>` + i;
+    html += `<select id="selectId-` + i + `" onchange="toggleDate(event)">`;
+    html += `<option selected disabled>SELECT</option>`;
+    html += `<option value='N'>NO</option>`;
+    html += `<option value='Y'>YES</option>`;
+    html += `</select>`;
+    
+    html += `<a href="#" id="anchor-` + i + `">`;
+    html += `<img src="https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png" width="30px" height="30px">`;
+    html += `</a>`;
+    html += `</div>`;
+    
+    i++;
+    
+    document.getElementById('data').innerHTML += html;
+}
+
+var rowNumber;
+function toggleDate(event) {
+	var xx = document.getElementById(event.target.id).value;
+    rowNumber = event.target.id.split('-')[1]
+    var anchorVar = document.getElementById('anchor-' + rowNumber);
+    if (xx == 'N') {
+    	anchorVar.removeEventListener('click', fun);
+        anchorVar.style.filter = 'grayscale(100%)';
+    }
+    else {
+    	anchorVar.addEventListener('click', fun, false);
+        anchorVar.style.filter = 'grayscale(0%)';
+    }
+}
+
+function fun() {
+	myFunction(rowNumber);
+}
+
+function myFunction(rowID) {
+	alert('Hello, from row number ' + rowID)
+}
+
+</script>
+
+</body>
+</html>
