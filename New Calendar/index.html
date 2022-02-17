@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calendar(DatePicker)</title>
+    <link rel="stylesheet" href="style.css" />
+    <script language="javascript" src="script.js"></script>
+  </head>
+  <body>
+
+    <input type="text" name="sampleDate" id="sampleDate" value="06Jan2023"/>
+    <br />
+    
+    <div style="position: relative;">
+      <input type="text" id="fullDate" style="width: 138px;" value=""/>
+      <img onclick="getCalendar('calendar', 'fullDate', 'sdc')" style="width: 34px; height: 21px;"
+        src="https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png" alt="">
+
+      <div class="calendar" id="calendar"> </div>
+    </div>
+
+    
+    <div style="position: relative;">
+      <input type="text" id="fullDate1" style="width: 138px;" value=""/>
+      <img onclick="getCalendar('calendar1', 'fullDate1', '100')" style="width: 34px; height: 21px;"
+        src="https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png" alt="">
+
+      <div class="calendar" id="calendar1"> </div>
+    </div>
+
+  </body>
+</html>
