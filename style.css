@@ -1,0 +1,95 @@
+.calendar {
+  width: 220px;
+  border-radius: 5px;
+  background: #fff;
+  display: block;
+  font-family: 'Calibri', sans-serif !important;
+  font-weight: normal;
+  font-size: 14px;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  margin-top: -142px;
+  margin-left: -125px;
+}
+#calTable1 {
+  width: 220px;
+  border: 1px solid #dcdcff;
+  border-radius: 3px;
+  border-collapse: collapse;
+  color: #444;
+}
+#calTable1 td {
+  text-align: center;
+}
+tr.r > td {
+  width: 30px;
+  height: 30px;
+}
+td.not-current {
+  color: #c0c0c0;
+  cursor: no-drop;
+}
+#calTable1 thead td {
+  border: none;
+  color: #28283b;
+}
+tr.days {
+  color: #c0c0c0;
+}
+.normal {
+  transition: all 0.2s ease;
+}
+.normal:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #536dfe;
+  color: #fff;
+}
+#btnPrev,
+#btnNext {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #c0c0c0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#btnPrev:hover,
+#btnNext:hover {
+  color: #28283b;
+}
+#selectedMonth,
+#selectedYear {
+  border-radius: 2px;
+  /* padding: 3px; */
+  outline: none;
+  border: none;
+  appearance: none;
+  /* padding: 2px 0; */
+}
+#selectedMonth {
+  margin-left: 0;
+}
+#selectedYear {
+  margin-left: 5px;
+}
+.firstTD {
+  height: 50px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 10px;
+}
+.selectedDate {
+  background-color: #536dfe;
+  color: #fff;
+  border-radius: 50%;
+}
+.bottomButtons {
+  cursor: pointer;
+  padding: 10px;
+  color: #536dfe;
+}
