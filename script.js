@@ -1,9 +1,8 @@
 
 /*
-* Created By: Rushikesh Jade (RJ41819)
-* Description: This js file has the calendar functionality but can only used for Security --> User
-* CSS styles for this calendar: style/style_calendarForUser.css
-*/
+ * Created By: Rushikesh Jade
+ * Description: This js file has the calendar functionality but can only used for Security --> User
+ */
 
 
 // calendar functionality start
@@ -28,38 +27,33 @@ var Calendar = function (divId, disaplyDateId, nDaysPlus) {
     this.DaysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
     // nDays+current date
-    this.nDaysPlusDate = new Date(new Date("04April2022").setDate(new Date("04April2022").getDate() + this.nDaysPlus));
+    this.nDaysPlusDate = new Date(new Date().setDate(new Date().getDate() + this.nDaysPlus));
 
     // get months only in range of current date to current date+180 days
     this.Months = []
 
     // get total number of months from current date to end date
     this.totalMonthsInRange = 0;
-    var d1 = new Date("04April2022")
+    var d1 = new Date()
     this.totalMonthsInRange = (this.nDaysPlusDate.getFullYear() - d1.getFullYear()) * 12;
     this.totalMonthsInRange -= d1.getMonth();
     this.totalMonthsInRange += this.nDaysPlusDate.getMonth();
 
-
     // add months with year ( format: July 2022 )
-    var startingDate = "01" + monthArray[new Date("04April2022").getMonth()] + "" + new Date("04April2022").getFullYear();
     for (let i = 0; i <= this.totalMonthsInRange; i++) {
-        var x = i == 0 ? 0 : 31 * i
         this.Months.push({
             "key": i,
-            "value": monthArray[new Date(new Date(startingDate).setDate(new Date(startingDate).getDate() + x)).getMonth()]
-                + " " + new Date(new Date(startingDate).setDate(new Date(startingDate).getDate() + x)).getFullYear()
+            "value": monthArray[new Date(new Date().setMonth(new Date().getMonth() + i)).getMonth()] + " " + new Date(new Date().setMonth(new Date().getMonth() + i)).getFullYear()
         })
     }
-    console.log(this.totalMonthsInRange)
 
     // set date, month, year
-    var d = new Date("04April2022");
+    var d = new Date();
     this.defaultSelectedDate = document.getElementById(this.disaplyDateId).value;
     this.dateArray = getDateArray(this.defaultSelectedDate);
 
     // check for default date
-    if (new Date(this.defaultSelectedDate).getTime() < new Date("04April2022").getTime() || new Date(this.defaultSelectedDate).getTime() > this.nDaysPlusDate.getTime()) {
+    if (new Date(this.defaultSelectedDate).getTime() < new Date().getTime() || new Date(this.defaultSelectedDate).getTime() > this.nDaysPlusDate.getTime()) {
         this.currDay = d.getDate();
         this.currentMonth = d.getMonth();
         this.currentYear = d.getFullYear();
@@ -161,10 +155,11 @@ Calendar.prototype.showMonth = function (y, m) {
 
         // print the current day in the loop
         // get total number of months from current date to end date
-        if (i == this.dateArray[0] && m == newDate.getMonth() && y == this.dateArray[2]) {
+        console.log(y)
+        if ((i == this.dateArray[0]) && (m == newDate.getMonth()) && (y == this.dateArray[2])) {
             html += '<td class="normal selectedDate" onclick="getFullDate(' + i + ')">' + i + '</td>';
         }
-        else if (i < new Date("04April2022").getDate() && m == new Date("04April2022").getMonth()) {
+        else if (i < new Date().getDate() && m == new Date().getMonth()) {
             html += '<td class="not-current"">' + i + '</td>';
         }
         else if (i > this.nDaysPlusDate.getDate() && (this.Months[this.Months.length - 1].value.indexOf(monthArray[new Date(y, m).getMonth()]) != -1)) {
@@ -217,9 +212,7 @@ function getMonthAndYear() {
     var selectedMonthYear = document.getElementById('selectedMonth').value;
     for (let i = 0; i < cal.Months.length; i++) {
         if (cal.Months[i].value == selectedMonthYear) {
-            var a = new Date(new Date("01 " + selectedMonthYear).getFullYear(), new Date("01 " + selectedMonthYear).getMonth() + 1, 0).getDate()
-            var x = new Date(new Date("01 " + selectedMonthYear).setDate(new Date("01 " + selectedMonthYear).getDate() + (a - 1)))
-
+            var x = new Date(new Date().setMonth(new Date().getMonth() + cal.Months[i].key));
             cal.currentMonth = x.getMonth()
             cal.currentYear = x.getFullYear()
         }
@@ -245,7 +238,7 @@ function clearDate() {
 
 // Get Today's date
 function getTodayDate() {
-    var d = new Date("04April2022");
+    var d = new Date();
     document.getElementById(cal.disaplyDateId).value = (d.getDate() < 10 ? ('0' + d.getDate()) : d.getDate()) + '' + (monthArray[d.getMonth()].slice(0, 3)) + '' + d.getFullYear();
     document.getElementById(cal.divId).style.display = 'none';
 }
@@ -271,9 +264,9 @@ function getDateArray(d) {
         year = d.slice(5, 9);
     }
     else {
-        date = new Date("04April2022").getDate();
-        month = new Date("04April2022").getMonth();
-        year = new Date("04April2022").getFullYear();
+        date = new Date().getDate();
+        month = new Date().getMonth();
+        year = new Date().getFullYear();
     }
     return [parseInt(date), parseInt(month), parseInt(year)];
 }
